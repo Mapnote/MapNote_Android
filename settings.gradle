@@ -1,0 +1,25 @@
+pluginManagement {
+    includeBuild("build-logic")
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        maven { url = uri("https://jitpack.io") }
+    }
+}
+
+enableFeaturePreview("VERSION_CATALOGS")
+dependencyResolutionManagement {
+    versionCatalogs {}
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven { url = uri("https://jitpack.io") }
+        maven { url = uri("https://naver.jfrog.io/artifactory/maven/") }
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "MapNote"
+include ':app'
+include ':designsystem'
+
