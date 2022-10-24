@@ -49,8 +49,6 @@ import com.example.designsystem.theme.Gray03
 import com.example.designsystem.theme.MapNoteTheme
 import com.example.designsystem.theme.Primary
 
-
-
 @Composable
 fun MapNoteSwitch(
     scale: Float = 1f,
@@ -61,7 +59,6 @@ fun MapNoteSwitch(
     thumbColor: Color = Color.White,
     gapBetweenThumbAndTrackEdge: Dp = 2.dp
 ) {
-
     val switchON = remember {
         mutableStateOf(true)
     }
@@ -70,10 +67,11 @@ fun MapNoteSwitch(
 
     // To move the thumb, we need to calculate the position (along x axis)
     val animatePosition = animateFloatAsState(
-        targetValue = if (switchON.value)
+        targetValue = if (switchON.value) {
             with(LocalDensity.current) { (width - thumbRadius - gapBetweenThumbAndTrackEdge).toPx() }
-        else
+        } else {
             with(LocalDensity.current) { (thumbRadius + gapBetweenThumbAndTrackEdge).toPx() }
+        }
     )
 
     Canvas(
@@ -88,7 +86,6 @@ fun MapNoteSwitch(
                 )
             }
     ) {
-
         // Track
         drawRoundRect(
             color = if (switchON.value) checkedTrackColor else uncheckedTrackColor,
@@ -104,7 +101,6 @@ fun MapNoteSwitch(
                 y = size.height / 2
             )
         )
-
     }
 
     Spacer(modifier = Modifier.height(18.dp))
@@ -128,17 +124,10 @@ fun MapNoteSwitchPreview() {
             ) {
                 MapNoteSwitch()
             }
-
         }
     }
+
 }
 
 
 
-/**
- * Now in Android toggle button default values.
- */
-//object NiaToggleButtonDefaults {
-//    val ToggleButtonSize = 40.dp
-//    val ToggleButtonIconSize = 18.dp
-//}

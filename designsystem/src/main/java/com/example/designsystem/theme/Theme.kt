@@ -13,7 +13,11 @@ import androidx.core.view.ViewCompat
 private val LightColorScheme = lightColorScheme(
     primary = Primary,
     secondary = Sub01,
-    tertiary = Sub02
+    tertiary = Sub02,
+    onBackground = Gray02,
+    outline = Gray04,
+    tertiaryContainer = Black
+
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),

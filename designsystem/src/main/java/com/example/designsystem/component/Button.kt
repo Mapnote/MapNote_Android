@@ -3,6 +3,8 @@ package com.example.designsystem.component
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
@@ -28,10 +30,10 @@ fun MapNoteButton(
 ) {
     Button(
         onClick = onClick,
-        modifier = modifier,
+        modifier = modifier.fillMaxWidth(),
         enabled = enabled,
         colors = colors,
-        shape = RectangleShape,
+        shape = RoundedCornerShape(8.dp),
         contentPadding = contentPaddingValues,
     ) {
         content()
@@ -44,7 +46,7 @@ fun MapNoteRoundButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     colors: ButtonColors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = Primary),
-    contentPaddingValues: PaddingValues = PaddingValues(horizontal =14.dp, vertical =8.dp),
+    contentPaddingValues: PaddingValues = PaddingValues(horizontal = 14.dp, vertical = 8.dp),
     content: @Composable RowScope.() -> Unit,
 ) {
     Button(
@@ -58,7 +60,6 @@ fun MapNoteRoundButton(
         content()
     }
 }
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(name = "Light Mode", showBackground = true)

@@ -1,18 +1,15 @@
-plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+
+\plugins {
+    id("mapnote.android.library")
+    id("mapnote.android.library.compose")
 }
 
 android {
     namespace = "com.example.designsystem"
-    compileSdk = 33
+
 
     defaultConfig {
-        minSdk = 26
-        targetSdk = 33
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -28,12 +25,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.1"
-    }
 }
 
 dependencies {
@@ -43,6 +34,7 @@ dependencies {
     api(libs.androidx.compose.foundation.layout)
     api(libs.androidx.compose.material.iconsExtended)
     api(libs.androidx.compose.material3)
+    api(libs.androidx.compose.material)
     debugApi(libs.androidx.compose.ui.tooling)
     api(libs.androidx.compose.ui.tooling.preview)
     api(libs.androidx.compose.ui.util)

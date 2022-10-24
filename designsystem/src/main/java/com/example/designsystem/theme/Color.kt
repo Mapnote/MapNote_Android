@@ -33,3 +33,8 @@ internal val Sub02 = Color(0xFFFF8AAE)
 internal val Sub03 = Color(0xFF9ADCFF)
 internal val Sub04 = Color(0xFFD8B1FF)
 internal val Sub05 = Color(0xFFFFF27A)
+
+
+internal val Loading1 = Color(0xFFFF9365)
+internal val Loading2 = Color(0xCCFF9365)
+internal val Loading3 = Color(0x99FF9365)
