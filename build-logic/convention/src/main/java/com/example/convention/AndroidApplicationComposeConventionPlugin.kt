@@ -1,7 +1,4 @@
-package com.example.convention
-
 import com.android.build.api.dsl.ApplicationExtension
-import com.example.convention.configure.configureAndroidCompose
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType

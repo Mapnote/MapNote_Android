@@ -14,27 +14,31 @@
  *   limitations under the License.
  */
 
+import com.android.build.gradle.LibraryExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
-import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.getByType
 
-class AndroidHiltConventionPlugin : Plugin<Project> {
+class AndroidLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            // plugin을 통해 현재 Project의 Plugin을 가져올수 있다.
-            target.pluginManager
             with(pluginManager) {
-                apply("org.jetbrains.kotlin.kapt")
-                apply("dagger.hilt.android.plugin")
+                apply("com.android.library")
+                apply("org.jetbrains.kotlin.android")
             }
 
+            extensions.configure<LibraryExtension> {
+                configureKotlinAndroid(this)
+                defaultConfig.targetSdk = 33
+            }
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
-            target.dependencies {
-                "implementation"(libs.findLibrary("hilt.android").get())
-                "kapt"(libs.findLibrary("hilt.compiler").get())
-                "kaptAndroidTest"(libs.findLibrary("hilt.compiler").get())
+            configurations.configureEach {
+                resolutionStrategy {
+                    force(libs.findLibrary("junit4").get())
+                    force("org.objenesis:objenesis:2.6")
+                }
             }
         }
     }

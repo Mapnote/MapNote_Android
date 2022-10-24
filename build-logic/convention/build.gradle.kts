@@ -2,6 +2,7 @@ plugins {
     `kotlin-dsl`
 }
 
+group = "com.example.mapnote.buildlogic"
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
@@ -13,12 +14,24 @@ dependencies {
 gradlePlugin {
     plugins {
         register("androidApplicationCompose") {
-            id = "kongs.android.hilt"
-            implementationClass = "AndroidHiltConventionPlugin"
+            id = "mapnote.android.application.compose"
+            implementationClass = "AndroidApplicationComposeConventionPlugin"
         }
         register("androidLibraryCompose") {
-            id = "nowinandroid.android.library.compose"
+            id = "mapnote.android.library.compose"
             implementationClass = "AndroidLibraryComposeConventionPlugin"
+        }
+        register("androidHilt") {
+            id = "mapnote.android.hilt"
+            implementationClass = "AndroidHiltConventionPlugin"
+        }
+        register("androidApplication") {
+            id = "mapnote.android.application"
+            implementationClass = "AndroidApplicationConventionPlugin"
+        }
+        register("androidLibrary") {
+            id = "mapnote.android.library"
+            implementationClass = "AndroidLibraryConventionPlugin"
         }
     }
 }
