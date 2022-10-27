@@ -165,7 +165,7 @@ fun LoadingAnimation(
                         Color.Transparent at TransParentTime
                         Loading1 at 400
                         Loading2 at OneTime + TwoTime + TransParentTime
-                        Color.Transparent at OneTime + TwoTime + ThreeTIme + TransParentTime
+
                     },
                     repeatMode = RepeatMode.Restart
                 ),
@@ -215,7 +215,7 @@ object MapNoteLoadingDefaults {
     val TransParentTime = 300
     val OneTime = 600
     val TwoTime = 600
-    val ThreeTIme = 300
+    val ThreeTIme = 100
 
     val TotalTime = TransParentTime + OneTime + TwoTime + ThreeTIme
 

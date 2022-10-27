@@ -1,5 +1,4 @@
-
-\plugins {
+plugins {
     id("mapnote.android.library")
     id("mapnote.android.library.compose")
 }

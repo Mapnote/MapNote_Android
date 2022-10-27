@@ -8,6 +8,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -82,22 +83,26 @@ fun MainScreen(scope: CoroutineScope, state: BottomSheetScaffoldState) {
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
 @Composable
-fun MapBottomSeatScaffold(scope: CoroutineScope, state: BottomSheetScaffoldState) {
+fun MapBottomSeatScaffold(
+    scope: CoroutineScope,
+    state: BottomSheetScaffoldState,
+    bottomPadding: PaddingValues,
+    sheetContent: @Composable () -> Unit,
+    content: @Composable (PaddingValues) -> Unit
+) {
     BottomSheetScaffold(
-        sheetContent = {
-
-
-        },
+        modifier = Modifier.padding(bottomPadding),
+        sheetContent = { sheetContent() },
         scaffoldState = state,
         sheetBackgroundColor = Color.White,
         sheetShape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp)
     ) {
-        MainScreen(scope, state)
+        content(it)
     }
 }
 
 @Composable
- fun MapNoteBottom() {
+fun MapNoteBottom() {
     Column(
         Modifier
             .fillMaxWidth()
@@ -119,6 +124,6 @@ fun MapBottomSeatScaffold(scope: CoroutineScope, state: BottomSheetScaffoldState
 fun MainScreenPreview() {
     val bottomSheetScaffoldState = rememberBottomSheetScaffoldState()
     val scope = rememberCoroutineScope()
-    MapBottomSeatScaffold(scope, bottomSheetScaffoldState)
+//    MapBottomSeatScaffold(scope, bottomSheetScaffoldState)
 }
 

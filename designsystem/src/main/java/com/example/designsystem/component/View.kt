@@ -99,6 +99,22 @@ fun MapNoteTodoView(
     }
 }
 
+@Composable
+fun MapNoteSearchView(
+    modifier: Modifier = Modifier,
+    labelText: String,
+    contentText: String
+) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Image(modifier = Modifier.padding(horizontal = 20.dp), painter = painterResource(id = R.drawable.icon_marker_pin), contentDescription = "마커 핀" )
+        Column() {
+            Text(text = labelText  ,style = MaterialTheme.typography.labelSmall )
+            Text(text = contentText , style = MaterialTheme.typography.bodyMedium)
+        }
+
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(name = "Light Mode", showBackground = true)
 @Composable
@@ -113,19 +129,7 @@ fun MapNoteTodoButtonPreview() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Preview(name = "Light Mode", showBackground = true)
-@Composable
-fun ElavationMapNoteTodoViewPreview() {
-    MapNoteTheme {
-        MapNoteTodoView(
-            stickerDrawableRes = R.drawable.sticker01,
-            labelText = "CU 경희대점",
-            contentText = "포켓몬 빵 사기",
-            shadowElevation = 10.dp
-        )
-    }
-}
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(name = "Light Mode", showBackground = true)
@@ -137,6 +141,18 @@ fun MuchElavationMapNoteTodoViewPreview() {
             labelText = "CU 경희대점 CU 경희대점 CU 경희대점 CU 경희대점 CU 경희대점",
             contentText = "포켓몬 빵 사기 포켓몬 빵 사기 포켓몬 빵 사기 포켓몬 빵 사기",
             shadowElevation = 10.dp
+        )
+    }
+}
+
+@Preview(name = "Light Mode", showBackground = true)
+@Composable
+fun MapNoteSearchViewPreview() {
+    MapNoteTheme {
+        MapNoteSearchView(
+            labelText = "경희대학교 서울캠퍼스",
+            contentText = "서울특별시 동대문구 경희대로 26"
+
         )
     }
 }
