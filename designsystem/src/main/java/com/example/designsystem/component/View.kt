@@ -36,6 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.designsystem.R
+import com.example.designsystem.theme.Black
 import com.example.designsystem.theme.Gray04
 import com.example.designsystem.theme.MapNoteTheme
 
@@ -72,13 +73,13 @@ fun MapNoteTodoView(
                     Spacer(modifier = Modifier.width(14.dp))
                     Column() {
                         Text(
-                            modifier= Modifier.padding(end = 50.dp),
+                            modifier = Modifier.padding(end = 50.dp),
                             text = labelText, style = MaterialTheme.typography.labelMedium, maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
                         )
                         Spacer(modifier = Modifier.height(1.dp))
                         Text(
-                            modifier= Modifier.padding(end = 50.dp),
+                            modifier = Modifier.padding(end = 50.dp),
                             text = contentText,
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.tertiaryContainer,
@@ -100,16 +101,54 @@ fun MapNoteTodoView(
 }
 
 @Composable
+fun MapNoteHorizonTodoView(
+    onClick: () -> Unit,
+    placeName: String,
+    contentText: String,
+    myLocationText: String,
+    buttonText: String,
+    @DrawableRes stickerDrawableRes: Int
+) {
+    Surface() {
+        Column(modifier = Modifier.padding(20.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Image(
+                    modifier = Modifier.size(22.dp),
+                    painter = painterResource(id = stickerDrawableRes),
+                    contentDescription = "스티커 사진"
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(text = placeName, style = MaterialTheme.typography.titleMedium, color = Black)
+            }
+            Spacer(modifier = Modifier.height(2.dp))
+            Text(text = contentText, style = MaterialTheme.typography.labelSmall)
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(text = myLocationText, style = MaterialTheme.typography.labelSmall)
+            Spacer(modifier = Modifier.height(11.dp))
+            MapNoteButton(onClick = onClick) {
+                Text(text = buttonText)
+            }
+        }
+
+    }
+
+}
+
+@Composable
 fun MapNoteSearchView(
     modifier: Modifier = Modifier,
     labelText: String,
     contentText: String
 ) {
     Row(verticalAlignment = Alignment.CenterVertically) {
-        Image(modifier = Modifier.padding(horizontal = 20.dp), painter = painterResource(id = R.drawable.icon_marker_pin), contentDescription = "마커 핀" )
+        Image(
+            modifier = Modifier.padding(horizontal = 20.dp),
+            painter = painterResource(id = R.drawable.icon_marker_pin),
+            contentDescription = "마커 핀"
+        )
         Column() {
-            Text(text = labelText  ,style = MaterialTheme.typography.labelSmall )
-            Text(text = contentText , style = MaterialTheme.typography.bodyMedium)
+            Text(text = labelText, style = MaterialTheme.typography.labelSmall)
+            Text(text = contentText, style = MaterialTheme.typography.bodyMedium)
         }
 
     }
@@ -128,8 +167,6 @@ fun MapNoteTodoButtonPreview() {
         )
     }
 }
-
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(name = "Light Mode", showBackground = true)
@@ -153,6 +190,21 @@ fun MapNoteSearchViewPreview() {
             labelText = "경희대학교 서울캠퍼스",
             contentText = "서울특별시 동대문구 경희대로 26"
 
+        )
+    }
+}
+
+@Preview(name = "Light Mode", showBackground = true)
+@Composable
+fun MapNoteHorizonTodoViewPreview() {
+    MapNoteTheme {
+        MapNoteHorizonTodoView(
+            onClick = { /*TODO*/ },
+            placeName = "CU 경희대점",
+            contentText = "포켓몬 빵 사기",
+            myLocationText = "내 위치로부터 800m 떨어져있어요",
+            stickerDrawableRes = R.drawable.sticker01,
+            buttonText = "완료"
         )
     }
 }

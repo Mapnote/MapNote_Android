@@ -67,7 +67,7 @@ fun a() {
                 textLayoutResult = it
             },
             decorationBox = { innerTextField ->
-                RoundBackground(textLayoutResult)
+                RoundBackground(textLayoutResult, 3.dp, 3.dp)
                 innerTextField()
             },
             textStyle = TextStyle().copy(color = Color.White)
