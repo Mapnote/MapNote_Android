@@ -3,6 +3,7 @@ package com.example.designsystem.component
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -10,14 +11,19 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowRight
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -38,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import com.example.designsystem.R
 import com.example.designsystem.theme.Black
 import com.example.designsystem.theme.Gray04
+import com.example.designsystem.theme.Gray05
 import com.example.designsystem.theme.MapNoteTheme
 
 @Composable
@@ -154,6 +161,26 @@ fun MapNoteSearchView(
     }
 }
 
+@Composable
+fun MapNoteTextButtonView(
+    text: String
+) {
+    Box(
+        Modifier
+            .fillMaxWidth()
+            .background(Gray05)
+            .padding(horizontal = 24.dp, vertical = 25.dp)
+            .clip(RoundedCornerShape(10.dp)),
+        contentAlignment = Alignment.CenterStart
+    ) {
+        Text(text = text)
+        IconButton(modifier = Modifier.align(Alignment.CenterEnd).size(48.dp), onClick = { /*TODO*/ }) {
+            Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "장소 가기")
+        }
+
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(name = "Light Mode", showBackground = true)
 @Composable
@@ -206,5 +233,13 @@ fun MapNoteHorizonTodoViewPreview() {
             stickerDrawableRes = R.drawable.sticker01,
             buttonText = "완료"
         )
+    }
+}
+
+@Preview(name = "Light Mode", showBackground = true)
+@Composable
+fun MapNoteTextButtonViewPreview() {
+    MapNoteTheme {
+        MapNoteTextButtonView("CU 경희대점")
     }
 }

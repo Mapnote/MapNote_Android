@@ -26,7 +26,6 @@ fun RoundBackground(
         Canvas(modifier = Modifier) {
             val paint = Paint().apply {
                 color = Color.Black
-
                 pathEffect = PathEffect.cornerPathEffect(radius = 5.dp.toPx())
             }
             drawIntoCanvas {
@@ -76,13 +75,13 @@ fun createBackgroundRect(
     paddingHorizontal: Dp,
     paddingVertical: Dp
 ): Rect {
-    density
-
+    val paddingHorizontalPx = with(density){paddingHorizontal.toPx()}
+    val paddingVerticalPx = with(density){paddingVertical.toPx()}
     return Rect(
-        textLayoutResult.getLineLeft(lineIndex),
-        textLayoutResult.getLineTop(lineIndex),
-        textLayoutResult.getLineRight(lineIndex),
-        textLayoutResult.getLineBottom(lineIndex)
+        textLayoutResult.getLineLeft(lineIndex)- paddingHorizontalPx,
+        textLayoutResult.getLineTop(lineIndex) - paddingVerticalPx,
+        textLayoutResult.getLineRight(lineIndex) + paddingHorizontalPx,
+        textLayoutResult.getLineBottom(lineIndex) + paddingVerticalPx
     )
 }
 
